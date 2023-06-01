@@ -1,0 +1,26 @@
+.topnav{
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    width: 50%;
+    font-family: 'Montserrat';
+    padding: 2.5rem 2rem 2rem 2rem;
+    
+}
+
+.icon{
+    transform: scale(2.5);
+    margin-bottom: 2.5rem;
+}
+
+.name {
+    font-size : 1.5rem;
+}
+
+.icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

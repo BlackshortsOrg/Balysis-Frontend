@@ -1,0 +1,23 @@
+.select-title{
+    font-family: 'Montserrat';
+    font-style: normal;
+   font-weight: 600;
+   font-size: 1.6rem;
+   color: white;
+   margin-bottom: 1rem;
+   text-transform: uppercase;
+
+}
+
+.select-cont div{
+    background-color: #072341;
+    color: white;
+    border-radius: 4px;
+}
+
+
+.select-cont{
+    margin-bottom: 1.8rem;
+}
+
+
