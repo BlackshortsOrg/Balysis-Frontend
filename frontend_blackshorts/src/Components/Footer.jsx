@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import balysis from '../assets/bayblack.jpg'
+import balysis from '../assets/Group 7120.png'
 import { SocialIcon } from "react-social-icons";
 import {FaFacebook} from 'react-icons/fa'
 import {BsLinkedin} from 'react-icons/bs'
@@ -17,12 +17,12 @@ export default function Footer(){
                    <div className="footer-left-icons">
                     <div className="icon1">
                     <a href="https://www.instagram.com/sharnamagrawal_/"
-                     ><BsInstagram color="black"  size={x}/> </a>
+                     ><BsInstagram color="white"  size={x}/> </a>
                     </div>
                     <div className="icon2"><a href="https://www.linkedin.com/company/blackshorts/" className="adjust-me"><BsLinkedin size={x} 
-                   color="black"/></a></div>
+                   color="white"/></a></div>
                     <div className="icon3"><a href="https://www.facebook.com/sharnam.agrawal.1/" className="adjust-me" ><FaFacebook size={x}
-                    color="black" /> </a></div>
+                    color="white" /> </a></div>
                    </div>
                    <div className="footer-left-text">
                      Copyright ©Blackshorts | All Rights Reserved 2023

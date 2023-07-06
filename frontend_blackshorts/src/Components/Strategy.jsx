@@ -1,6 +1,7 @@
 import React from "react";
 import hands from '../assets/hands.svg'
 import handscolor from '../assets/handscolor.jpg'
+import x from '../assets/1 1.svg'
 import Slider from "./Slider";
 export default function Strategy(){
     return(
@@ -20,7 +21,7 @@ export default function Strategy(){
               </div>
               <div className="righty">
                 <div className="strategy-img">
-                    <img src={handscolor} alt = "hands" />
+                    <img src={x} alt = "hands" />
                 </div>
               </div>
             </div>

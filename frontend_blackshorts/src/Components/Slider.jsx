@@ -5,9 +5,9 @@ function Slider() {
     return (
       <>
       <div className='behind'>
-      <p className="one">introducing</p>
+      <p className="one" style={{fontWeight:'bolder'}}>Introducing</p>
           <h1 className="two"><b>Balysis</b></h1>
-          <p className="three">Your one-stop place to create, customize, and backtest your trading strategies without writing a single line of code</p>
+          <p className="three" style={{color:'white'}}>Your one-stop place to create, customize, and backtest your trading strategies without writing a single line of code</p>
       <Splide hasTrack={false} aria-label='...'
        options={ {
           type: 'loop',
