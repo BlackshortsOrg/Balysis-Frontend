@@ -1,7 +1,9 @@
 const FeaturesCard = (props) => {
   return (
     <div className="flex flex-col items-center justify-evenly p-10 rounded-lg mt-14 mx-6 card">
-        <h1 className="text-[#41AFFF] font-bold text-3xl">{props.title}</h1>
+        <div>
+            <h1 className="text-[#41AFFF] font-bold text-3xl">{props.title}</h1>
+        </div>
         <ul className="text-[#000F20] card-font font-medium mt-5">
             <li>{props.line1}</li>
             <li>{props.line2}</li>

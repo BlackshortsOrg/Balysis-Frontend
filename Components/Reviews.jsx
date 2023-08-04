@@ -16,7 +16,7 @@ export default function Reviews(){
         <div className="reviews" style={{backgroundColor:'white'}}>
             <div className="reviews-content">
                 <div className="reviews-content-text">
-                  <h1>Loved & trusted by trusted <span>specialist</span></h1>
+                  <h1 className="font-bold">Loved & trusted by trusted <span>specialist</span></h1>
                 </div>
                 <div className="reviews-content-carousel">
                 <Splide hasTrack={ false } aria-label="..." options={{
