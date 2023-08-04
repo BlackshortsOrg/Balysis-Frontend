@@ -10,7 +10,7 @@ export default function Strategy() {
             <div className="section1">
                 <div className="lefty">
                     <div className="bigd">
-                        <h1 >Check out strategies and backtest on data of your choice</h1>
+                        <h1 className='font-bold'>Check out strategies and backtest on data of your choice</h1>
                     </div>
                     <div className="smalld">
                         <p>Get live profit and loss statistics on market data by the deployed and published strategies.</p>

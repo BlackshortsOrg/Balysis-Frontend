@@ -1,88 +1,18 @@
 "use client"
 import ReactDOM from "react-dom";
+import FeaturesCard from "./FeaturesCard";
 export default function Feature() {
   return (
-    <div className="features">
-      <div className="features-title">
-        <h1>Features</h1>
+    <div className="flex flex-col items-center justify-center bg-white py-32">
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-[#000F20] text-6xl font-bold">Features</h1>
       </div>
-      <div className="features-content">
-        <div className="div1">
-          <div className="heading">
-            <h1>BACKTESTING</h1>
-          </div>
-          <div className="specs">
-            <ul>
-              <li>
-                <p>25 free backtest every week</p>
-              </li>
-              <li>
-                <p>20 paisa per backtest per year</p>
-              </li>
-
-              <li>
-                <p>Ultra fast</p>
-              </li>
-              <li>
-                <p>Unlimited Backtestsstarting @₹533</p>
-              </li>
-            </ul>
-          </div>
-          <div className="explore">
-            <p>Explore</p>
-          </div>
-        </div>
-        <div className="div2">
-          <div className="heading">
-            <h1>FORWARD TESTING</h1>
-          </div>
-          <div className="specs">
-            <ul>
-              <li>
-                <p>25 free backtest every week</p>
-              </li>
-              <li>
-                <p>20 paisa per backtest per year</p>
-              </li>
-
-              <li>
-                <p>Ultra fast</p>
-              </li>
-              <li>
-                <p>Unlimited Backtestsstarting @₹533</p>
-              </li>
-            </ul>
-          </div>
-          <div className="explore">
-            <p>Explore</p>
-          </div>
-        </div>
-        <div className="div3">
-          <div className="heading">
-            <h1>LIVE TRADE</h1>
-          </div>
-          <div className="specs">
-            <ul>
-              <li>
-                <p>25 free backtest every week</p>
-              </li>
-              <li>
-                <p>20 paisa per backtest per year</p>
-              </li>
-
-              <li>
-                <p>Ultra fast</p>
-              </li>
-              <li>
-                <p>Unlimited Backtestsstarting @₹533</p>
-              </li>
-            </ul>
-          </div>
-          <div className="explore">
-            <p>Explore</p>
-          </div>
-        </div>
+      <div className="flex flex-row justify-around items-center">
+        <FeaturesCard title="BACKTESTING" line1="25 free backtests every week" line2="20 paisa per backtest per year" line3="Ultra fast" line4="Unlimited backlests starting @ ₹533"/>
+        <FeaturesCard title="FORWARD TESTING" line1="25 free backtests every week" line2="20 paisa per backtest per year" line3="Ultra fast" line4="Unlimited backlests starting @ ₹533"/>
+        <FeaturesCard title="LIVE TRADE" line1="25 free backtests every week" line2="20 paisa per backtest per year" line3="Ultra fast" line4="Unlimited backlests starting @ ₹533"/>
       </div>
+
     </div>
   );
 }
