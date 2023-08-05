@@ -11,50 +11,47 @@ export default function Footer() {
    // const [x,setx] = useState(window.innerWidth/60);
 
    return (
-      <div className="footer">
-         <div className="footer-content">
-            <div className="footer-left">
-               <div className="footer-left-img" >
+      <div className='flex flex-row justify-between items-start pt-20 pb-4 px-14'>
+         <div className='flex flex-col items-start justify-start'>
+            <div className='flex flex-col items-center justify-center'>
+            <div className="w-[100%]" >
                   <Image src={Balysis} alt='Balysis' />
-               </div>
-               <div className="footer-left-icons">
-                  <div className="icon1">
-                     <Link href="https://www.instagram.com/sharnamagrawal_/"
-                     ><BsInstagram color="white" /> </Link>
-                  </div>
-                  <div className="icon2"><Link href="https://www.linkedin.com/company/blackshorts/" className="adjust-me"><BsLinkedin
-                     color="white" /></Link></div>
-                  <div className="icon3"><Link href="https://www.facebook.com/sharnam.agrawal.1/" className="adjust-me" ><FaFacebook
-                     color="white" /> </Link></div>
-               </div>
-               <div className="footer-left-text">
-                  Copyright ©Blackshorts | All Rights Reserved 2023
-               </div>
             </div>
-            <div className="footer-middle" style={{ marginTop: '10%' }}>
-               <div className="middle-heading" style={{ color: '#41AFFF', fontWeight: '700' }}>
-                  COMPANY
-               </div>
-               <div className="middle-content" style={{ marginTop: '6%', lineHeight: '170%', fontWeight: '500' }}>
-                  <p>Home</p>
-                  <p>About</p>
-                  <p>Privacy Policy</p>
-                  <p>Terms and Conditions</p>
-                  <p>Contact Us</p>
-               </div>
+            <div className="flex flex-row justify-between mb-40">
+                 <div className='mr-10'>
+                    <Link href="https://www.instagram.com/sharnamagrawal_/"
+                    ><BsInstagram color="white" size={30}/> </Link>
+                 </div>
+                 <div className='mr-10'><Link href="https://www.linkedin.com/company/blackshorts/" className="adjust-me"><BsLinkedin
+                    color="white" size={30}/></Link></div>
+                 <div><Link href="https://www.facebook.com/sharnam.agrawal.1/" className="adjust-me" ><FaFacebook
+                    color="white" size={30}/> </Link></div>
+              </div>
+
             </div>
-            <div className="footer-end" style={{ marginTop: '10%' }}>
-               <div className="right-heading" style={{ color: '#41AFFF', fontWeight: '700' }}>
-                  RESOURCES
-               </div>
-               <div className="middle-content" style={{ marginTop: '6%', lineHeight: '170%', fontWeight: '500' }}>
-                  <p>Abhishek</p>
-                  <p>Rishita</p>
-                  <p>Aadeesh</p>
-                  <p>Eshwar</p>
-                  <p>Bahteti Secrets</p>
-               </div>
+            <div className="text-white font-medium">
+                   Copyright ©Blackshorts | All Rights Reserved 2023
             </div>
+         </div>
+         <div className='flex flex-row items-center justify-center mt-14'>
+            <ul className='mr-24'>
+               <li className="text-[#41AFFF] text-xl font-bold mb-6">COMPANY</li>
+               <li className="text-white font-medium leading-relaxed">Home</li>
+               <li className="text-white font-medium leading-relaxed">About</li>
+               <li className="text-white font-medium leading-relaxed">Privacy Policy</li>
+               <li className="text-white font-medium leading-relaxed">Terms and Conditions</li>
+               <li className="text-white font-medium leading-relaxed">Contact Us</li>
+            </ul>
+         
+         
+            <ul className='mr-24'>
+               <li className="text-[#41AFFF] text-xl font-bold mb-6">RESOURCES</li>
+               <li className="text-white font-medium leading-relaxed">Learning</li>
+               <li className="text-white font-medium leading-relaxed">Youtube</li>
+               <li className="text-white font-medium leading-relaxed">TradeBook</li>
+               <li className="text-white font-medium leading-relaxed">Code My Startegy</li>
+               <li className="text-white font-medium leading-relaxed">Ask For New Feature</li>
+            </ul>
          </div>
       </div>
    )
