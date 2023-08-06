@@ -5,10 +5,10 @@ import { TbTriangleInvertedFilled } from 'react-icons/tb'
 function Slider() {
   return (
     <>
-      <div className='behind'>
-        <p className="one" style={{ fontWeight: 'bolder' }}>Introducing</p>
-        <h1 className="two"><b>Balysis</b></h1>
-        <p className="three" style={{ color: 'white' }}>Your one-stop place to create, customize, and backtest your trading strategies without writing a single line of code</p>
+      <div className='behind relative flex flex-col flex-start items-center h-[40%] w-[50%] z-10 rounded-2xl bolder-2 border-white'>
+        <p className="font-extrabold" >Introducing</p>
+        <h1 className="font-bold text-white text-center"><b className='text-6xl font-bold'>Balysis</b></h1>
+        <p className="text-white text-center" >Your one-stop place to create, customize, and backtest your trading strategies without writing a single line of code</p>
         <Splide hasTrack={false} aria-label='...'
           options={{
             type: 'loop',
@@ -25,7 +25,7 @@ function Slider() {
         >
 
 
-          <SplideTrack className='wrapper'>
+          <SplideTrack className=''>
             <SplideSlide className='slide1'>
             </SplideSlide>
             <SplideSlide className='slide2'>

@@ -13,10 +13,10 @@ import {temp} from '../Data/data'
 import Card from "./Card";
 export default function Reviews(){
     return(
-        <div className="reviews" style={{backgroundColor:'white'}}>
+        <div className="reviews w-[100vw] relative h-[90vh] bg-white">
             <div className="reviews-content">
                 <div className="reviews-content-text">
-                  <h1 className="font-bold">Loved & trusted by trusted <span>specialist</span></h1>
+                  <h1 className="font-bold text-[#000F20] text-6xl">Loved & trusted by trusted <span className="text-[#41AFFF] text-6xl font-bold">specialist</span></h1>
                 </div>
                 <div className="reviews-content-carousel">
                 <Splide hasTrack={ false } aria-label="..." options={{
