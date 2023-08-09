@@ -10,7 +10,22 @@
 
 @import url('https://fonts.cdnfonts.com/css/montserrat');
 
-
+.outline-button{
+ padding:7px 14px;
+ border:1px solid #41AFFF;
+ font-weight: bold;
+ font-size: 14px;
+ border-radius:6px;
+ color:#41AEFD;
+}
+.primary-btn{
+  padding:7px 14px;
+  background-color: #41AFFF;
+  color: white;
+  font-size: 14px;
+ border-radius:6px;
+ font-weight:bold;
+}
 :root{
   --slider-width: 770.16px;
   --slider-height: 399.38px;
