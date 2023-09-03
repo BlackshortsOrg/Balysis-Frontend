@@ -2,12 +2,15 @@
 
 import LeftPane from '@/components/LeftPane'
 import useDragDivider from '@/hooks/useDragDivider'
-
+import RightPane from '@/components/RightPane'
+import { MessageProvider } from '@/context/MessageContext'
 export default function Home() {
 
-  const onMouseDown = useDragDivider()
+  const onMouseDown = useDragDivider("leftplane")
 
   return (
+    <MessageProvider>
+
     <div className='h-[92vh] flex '>
       <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
       <div id="leftplane" className={"w-1/2 flex-grow-0 flex-shrink-0"}>
@@ -20,9 +23,10 @@ export default function Home() {
         </svg>
       </div>
       <div className='flex-[100%] flex-shrink-1' >
-        Right
+        <RightPane />
       </div>
       <div className='w-3 border-l-[#41AFFF] border-solid border-l-[1px]' />
     </div>
+    </MessageProvider>
   )
 }

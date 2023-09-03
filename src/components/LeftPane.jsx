@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Editor } from '@monaco-editor/react'
 import { Tab } from '@headlessui/react'
-
+import { useMessage } from '../context/MessageContext'
 // {
 //     "sourceCode": "def EsharkyStrat(o,h,l,c,t):\tif (c < 200):\n\t\tbuy(MARKET_ORDER, qty=1)\n\telif (c > 200):\n\t\tsell(MARKET_ORDER, qty=1)",
 //     "language": "python",
@@ -15,28 +15,31 @@ import { Tab } from '@headlessui/react'
 // }
 
 const LeftPane = () => {
+    const { message, setMessageText } = useMessage()
     const editorRef = useRef(null);
     const submitCode = async () => {
-        console.log("here")
-        const data = {
-            "sourceCode": editorRef.current.getValue(),
-            "language": "python",
-            "userId": 1,
-            "submissionId": 2,
-            "startDate": "2020-01-01",
-            "endDate": "2022-12-31",
-            "timeframe": "1D",
-            "strategyName": "EsharkyStrat",
-            "symbol": "MSFT"
-        }
-        console.log(data)
-        await fetch("http://localhost:3000/backtest/new", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type': "application/json; charset=UTF-8"
-            }
-        })
+        setMessageText("Executing...");
+        // console.log("here")
+        // const data = {
+        //     "sourceCode": editorRef.current.getValue(),
+        //     "language": "python",
+        //     "userId": 1,
+        //     "submissionId": 2,
+        //     "startDate": "2020-01-01",
+        //     "endDate": "2022-12-31",
+        //     "timeframe": "1D",
+        //     "strategyName": "EsharkyStrat",
+        //     "symbol": "MSFT"
+        // }
+        
+        // console.log(data)
+        // await fetch("http://localhost:3000/backtest/new", {
+        //     method: "POST",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-type': "application/json; charset=UTF-8"
+        //     }
+        // })
     }
     const EditorOnMount = (editor, monaco) => {
         editorRef.current = editor
@@ -51,6 +54,7 @@ const LeftPane = () => {
         })
         monaco.editor.setTheme("blackshortsTheme")
     }
+
     return (
         <div className='ml-2 mr-4 h-[90vh]'>
             <div className='flex flex-row justify-start pt-4'>

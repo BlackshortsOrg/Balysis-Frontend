@@ -1,36 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
+export default function useDragDivider(plane) {
+  const [width, setWidth] = useState(50);
+  const dragging = useRef(false);
+  const dividerPosition = useRef(null);
 
-export default function useDragDivider() {
-    const [width, setWidth] = useState(50);
-    const dragging = useRef(false);
-    const divider_position = useRef(null);
+  const onMouseDown = (e) => {
+    dragging.current = true;
+    dividerPosition.current = e.clientX;
+  };
 
-    const onMouseDown = (e) => {
-        dragging.current = true;
-        divider_position.current = e.clientX
-        console.log(`Divider Position :- ${e.clientX}`)
-    }
+  useEffect(() => {
+    const onMouseUp = () => {
+      dragging.current = false;
+    };
 
-    useEffect(() => {
-        const onMouseUp = (e) => {
-            dragging.current = false
-        }
+    const onMouseMove = (e) => {
+      if (dragging.current) {
+        const percentageChange = ((e.clientX - dividerPosition.current) / window.innerWidth) * 100;
+        setWidth((prevWidth) => prevWidth + percentageChange);
+        dividerPosition.current = e.clientX;
+      }
+    };
 
-        const onMouseMove = (e) => {
-            if (dragging.current) {
-                const percentage_change = (e.clientX / window.innerWidth) * 100;
-                setWidth(percentage_change)
-                document.getElementById("leftplane").style.width = width + "%"
-            }
-        }
-        document.addEventListener("mouseup", onMouseUp);
-        document.addEventListener("mousemove", onMouseMove);
-        return () => {
-            document.removeEventListener("mouseup", onMouseUp);
-            document.removeEventListener("mousemove", onMouseMove);
-        }
-    }, [width, setWidth])
+    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mousemove", onMouseMove);
 
-    return onMouseDown
+    return () => {
+      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.getElementById(plane).style.width = `${width}%`;
+  }, [width, plane]);
+
+  return onMouseDown;
 }
