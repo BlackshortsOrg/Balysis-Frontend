@@ -7,7 +7,7 @@ export default function useDragDivider(plane) {
 
   const onMouseDown = (e) => {
     dragging.current = true;
-    dividerPosition.current = e.clientX;
+    dividerPosition.current = (plane == "leftplane") ? e.clientX : e.clientY;
   };
 
   useEffect(() => {
@@ -17,9 +17,9 @@ export default function useDragDivider(plane) {
 
     const onMouseMove = (e) => {
       if (dragging.current) {
-        const percentageChange = ((e.clientX - dividerPosition.current) / window.innerWidth) * 100;
+        const percentageChange = ((((plane == "leftplane") ? e.clientX : e.clientY) - dividerPosition.current) / ((plane == "leftplane") ? window.innerWidth : window.innerHeight)) * 100;
         setWidth((prevWidth) => prevWidth + percentageChange);
-        dividerPosition.current = e.clientX;
+        dividerPosition.current = (plane == "leftplane") ? e.clientX : e.clientY;
       }
     };
 
@@ -33,7 +33,7 @@ export default function useDragDivider(plane) {
   }, []);
 
   useEffect(() => {
-    document.getElementById(plane).style.width = `${width}%`;
+    (plane == "leftplane") ? document.getElementById(plane).style.width = `${width}%` : document.getElementById(plane).style.height = `${width}%`
   }, [width, plane]);
 
   return onMouseDown;
