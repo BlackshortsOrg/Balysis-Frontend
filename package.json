@@ -11,14 +11,26 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
+    "@material-ui/core": "^4.12.4",
     "@monaco-editor/react": "^4.5.2",
     "autoprefixer": "10.4.15",
+    "chart.js": "^4.4.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
+    "faker": "5.5.3",
     "next": "13.4.19",
     "postcss": "8.4.28",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "@types/faker": "5.5.9",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.10",
+    "@vitejs/plugin-react": "^3.0.0",
+    "typescript": "4.9.4",
+    "vite": "^4.0.0"
   }
 }
