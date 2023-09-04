@@ -1,10 +1,13 @@
 import React from 'react'
 import Graph from './Graph'
+import useDragDivider from '@/hooks/useDragDivider'
 const UpPane = () => {
+  const onLeftDividerMouseDown = useDragDivider("leftplane");
+  const onTopDividerMouseDown = useDragDivider("rightplane");
   return (
     <div className='flex flex-col'>
-      <div className='flex flex-row justify-between mt-5 px-6'>
-      <div className=' border-solid border-blue-600 border-x-2 border-y-2 rounded-md flex flex-row my-1'>
+      <div className='flex flex-row justify-between mt-5 px-6' onMouseDown={onLeftDividerMouseDown}>
+      <div className=' border-solid border-blue-600 border-x-2 border-y-2 rounded-md flex flex-row my-1' >
                     <p className='pl-2 text-[#41AEFD] font-bold pr-5'>Profit and Loss Graph</p>
                     <div className='mt-2 pr-2'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
@@ -12,7 +15,7 @@ const UpPane = () => {
                         </svg>
                     </div>
                 </div>
-      <div className=' border-solid border-blue-600 border-x-2 border-y-2 rounded-md flex flex-row justify-between my-1'>
+      <div className=' border-solid border-blue-600 border-x-2 border-y-2 rounded-md flex flex-row justify-between my-1' onMouseDown={onTopDividerMouseDown}>
                     <p className='pl-2 text-[#41AEFD] font-bold pr-24'>Metric</p>
                     <div className='mt-2 pr-2'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
