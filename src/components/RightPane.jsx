@@ -1,19 +1,21 @@
-import { MessageProvider } from '@/context/MessageContext'
-import React from 'react'
+import React, { useContext } from 'react'
 import MessageDisplay from './MessageDisplay'
 import useDragDivider from '@/hooks/useDragDivider'
 import UpPane from './UpPane'
 import DownPane from './DownPane'
+
 const RightPane = () => {
-  const onMouseDown = useDragDivider("rightplane")
+  // const onMouseDown = useDragDivider("rightplane")
+
   return (
     <div className='h-[92vh] flex flex-col'>
-      <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
-     
+      <MessageDisplay />
+      {/* <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
+
       <div id="rightplane" className={"h-1/2 flex-grow-0 flex-shrink-0"}>
         <UpPane />
         My message here
-      <MessageDisplay />
+        <MessageDisplay />
       </div>
       <div className='h-3 bg-[#04192F] flex justify-center hover:cursor-ns-resize' onMouseDown={onMouseDown}>
         <svg xmlns="http://www.w3.org/2000/svg" className='my-auto' width="23" height="7" viewBox="0 0 23 7" fill="none">
@@ -25,7 +27,7 @@ const RightPane = () => {
       <div className='flex-[100%] flex-shrink-1 overflow-y-scroll' >
         <DownPane />
       </div>
-      <div className='w-3 border-l-[#41AFFF] border-solid border-l-[1px]' />
+      <div className='w-3 border-l-[#41AFFF] border-solid border-l-[1px]' /> */}
     </div>
 
 

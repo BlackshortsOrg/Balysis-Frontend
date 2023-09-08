@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Editor } from '@monaco-editor/react'
 import { Tab } from '@headlessui/react'
-import { useMessage } from '../context/MessageContext'
+import SubmissionContext from '@/context/SubmissionContext'
 // {
 //     "sourceCode": "def EsharkyStrat(o,h,l,c,t):\tif (c < 200):\n\t\tbuy(MARKET_ORDER, qty=1)\n\telif (c > 200):\n\t\tsell(MARKET_ORDER, qty=1)",
 //     "language": "python",
@@ -15,31 +15,29 @@ import { useMessage } from '../context/MessageContext'
 // }
 
 const LeftPane = () => {
-    const { message, setMessageText } = useMessage()
+    const { setSubmissionId, setSubmissionStatus } = useContext(SubmissionContext)
     const editorRef = useRef(null);
     const submitCode = async () => {
-        setMessageText("Executing...");
-        // console.log("here")
-        // const data = {
-        //     "sourceCode": editorRef.current.getValue(),
-        //     "language": "python",
-        //     "userId": 1,
-        //     "submissionId": 2,
-        //     "startDate": "2020-01-01",
-        //     "endDate": "2022-12-31",
-        //     "timeframe": "1D",
-        //     "strategyName": "EsharkyStrat",
-        //     "symbol": "MSFT"
-        // }
-        
-        // console.log(data)
-        // await fetch("http://localhost:3000/backtest/new", {
-        //     method: "POST",
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-type': "application/json; charset=UTF-8"
-        //     }
-        // })
+        const data = {
+            "sourceCode": editorRef.current.getValue(),
+            "language": "python",
+            "userId": 1,
+            "startDate": "2020-01-01",
+            "endDate": "2022-12-31",
+            "timeframe": "1D",
+            "strategyName": "EsharkyStrat",
+            "symbol": "MSFT"
+        }
+        const resp = await fetch("http://localhost:3000/backtest/new", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': "application/json; charset=UTF-8"
+            }
+        })
+        const res = await resp.json()
+        setSubmissionId(res['id'])
+        setSubmissionStatus("STARTED")
     }
     const EditorOnMount = (editor, monaco) => {
         editorRef.current = editor
@@ -64,16 +62,8 @@ const LeftPane = () => {
                             <Tab className="justify-between bg-[#1E5684] rounded-t-lg px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
                                 <div className="flex justify-between">
                                     <div className='inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white'> Esharky </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mt-1 fill-[#41AFFF]">
-                                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </Tab>
-                            <Tab className="justify-between bg-[#1E5684] rounded-t-lg px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
-                                <div className="flex justify-between">
-                                    <div className='inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white'> Esharky </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mt-1 fill-[#41AFFF]">
-                                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mt-1 fill-[#41AFFF]">
+                                        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                             </Tab>
@@ -81,7 +71,15 @@ const LeftPane = () => {
                                 <div className="flex justify-between">
                                     <div className='inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white'> Esharky </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mt-1 fill-[#41AFFF]">
-                                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+                                        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                            </Tab>
+                            <Tab className="justify-between bg-[#1E5684] rounded-t-lg px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
+                                <div className="flex justify-between">
+                                    <div className='inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white'> Esharky </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mt-1 fill-[#41AFFF]">
+                                        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                             </Tab>
