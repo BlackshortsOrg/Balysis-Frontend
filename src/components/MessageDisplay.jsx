@@ -33,6 +33,12 @@ function MessageDisplay() {
     else {
       setStatus(data['status']);
       setSubmissionStatus("COMPLETED")
+      const getData = async () => {
+        const resp = await fetch(`http://localhost:3000/backtest/result/1/${submissionId}`)
+        const data = await resp.json()
+        setData(data)
+      }
+      getData()
     }
   }
 
@@ -44,16 +50,7 @@ function MessageDisplay() {
       }
     }
   })
-  useEffect(() => {
-    const getData = async () => {
-      const resp = await fetch(`http://localhost:3000/backtest/result/1/${submissionId}`)
-      const data = await resp.json()
-      setData(data)
-    }
-    if (status !== 'pending' && submissionStatus === 'COMPLETED') {
-      getData()
-    }
-  }, [status])
+
   if (submissionStatus === 'NOT STARTED') return (<h2>Not Started</h2>)
   if (submissionStatus === 'STARTED') return (<h2>Submitted</h2>)
   if (status === 'pending') return (<h2>Pending</h2>)
