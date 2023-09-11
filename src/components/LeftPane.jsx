@@ -17,7 +17,9 @@ import CodeTab from '@/components/CodeTab'
 
 const LeftPane = () => {
     const { setSubmissionId, setSubmissionStatus } = useContext(SubmissionContext)
-    const [codeTab, setCodeTab]=useState([{id:1, code:""}])
+    const [codeTab, setCodeTab]=useState([1])
+    const [codeEditor, setCodeEditor]=useState([{id:1, code:""}])
+    const [activeTab, setActiveTab]=useState(1)
     const editorRef = useRef(null);
     const submitCode = async () => {
         const data = {
@@ -55,19 +57,25 @@ const LeftPane = () => {
         monaco.editor.setTheme("blackshortsTheme")
     }
     const addTab=()=>{
-        setCodeTab([...codeTab, {id:codeTab.length+1, code:""}])
+        setCodeTab([...codeTab, [codeTab.length+1]])
+        setCodeEditor([...codeEditor, {id:codeEditor.length+1, code:"monaco code here"}])
     }
-
+    const handleTabChange=(index)=>{
+        setActiveTab(index)
+    }
+    const handleEditorChange=(value)=>{
+        setCodeEditor([...codeEditor, {id:codeEditor.length+1, code:value}])
+    }
     return (
         <div className='ml-2 mr-4 h-[90vh]'>
             <div className='flex flex-row justify-start pt-4'>
                 <div className='flex-[65%] pt-2'>
-                    <Tab.Group>
+                    <Tab.Group selectedIndex={activeTab} onChange={handleTabChange}>
                         <Tab.List style={{ display: 'flex', alignItems: 'center' }}>
                             {
-                                codeTab.map((item,i) => (
+                                codeTab.map((i) => (
                                     <div key={i}>
-                                    <CodeTab tabtitle="Esharky" />
+                                        <CodeTab tabtitle="Esharky" />
                                     </div>
                                 ))
                             }
@@ -90,7 +98,14 @@ const LeftPane = () => {
                 </div>
             </div>
             {/* <textarea className='bg-[rgba(0,17,34,0.2)] h-[75vh] w-full mt-2 border-solid border-x-[6px] border-y-[6px] border-[rgba(65,175,255,0.4)] rounded-md resize-none focus:border-blue-400 focus:ring-0 text-white' defaultValue={"Code Editor"} /> */}
-            <Editor height="75vh" defaultLanguage='python' defaultValue='import balysis' onMount={EditorOnMount} theme='blackshortsTheme' className='' />
+            <Editor
+            height="75vh"
+            defaultLanguage="python"
+            defaultValue="import balysis"
+            onMount={EditorOnMount}
+            theme='blackshortsTheme'
+            onChange={handleEditorChange}
+        />
             <div className='flex flex-row-reverse mt-2'>
                 <button className='mx-2 bg-[#41AFFF] px-4 rounded-md text-white font-semibold'>Save</button>
                 <button className='mx-2 bg-[#41AFFF] px-4 rounded-md text-white font-semibold'>Save & Execute</button>

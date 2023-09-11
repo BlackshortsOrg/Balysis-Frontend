@@ -5,26 +5,12 @@ import { Tab } from '@headlessui/react'
 import SubmissionContext from '@/context/SubmissionContext'
 const CodeTab = (props) => {
   const [visibility, setVisibility]=useState(true)
-  const editorRef = useRef(null);
-  const EditorOnMount = (editor, monaco) => {
-    editorRef.current = editor
-    monaco.editor.defineTheme("blackshortsTheme", {
-        base: "vs-dark",
-        inherit: true,
-        rules: [],
-        colors: {
-            // "editor.foreground": "#ffffff",
-            "editor.background": "#001122"
-        }
-    })
-    monaco.editor.setTheme("blackshortsTheme")
-}
-const deleteTab=()=>{
+  const deleteTab=()=>{
   setVisibility((e)=>!e)
 }
   return (
     <div>
-      {visibility && (<Tab className="justify-between bg-[#1E5684] rounded-t-lg px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
+      {visibility && (<Tab className="justify-between bg-[#1E5684] rounded-t-lg mr-1 px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
           <div className="flex justify-between">
           <div className='inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white'>{props.tabtitle}</div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 mt-1 fill-[#41AFFF]" onClick={deleteTab}>
