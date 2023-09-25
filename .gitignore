@@ -1,1 +1,6 @@
+#dependencies
 node_modules/
+
+#misc
+!src/tailwindImports.css
+package-lock.json

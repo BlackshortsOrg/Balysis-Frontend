@@ -1,16 +1,14 @@
 import React from "react";
 import Reviews from '../Components/Reviews';
 import Strategy from '../Components/Strategy';
-import Card from '../Components/Card';
-import {temp} from '../Data/data.js';
 import Feature from '../Components/Features';
-export default function Home(){
-    return(
-        <div className="Home">
-        <Strategy />
+const Home = () => {
+  return (
+    <div id="home" className="h-full w-full flex flex-col">
+      <Strategy />
       <Feature />
       <Reviews />
-    
-        </div>
-    )
+    </div>
+  );
 }
+export default Home;

@@ -1,34 +1,32 @@
 import React from "react";
-import hands from '../assets/hands.svg'
-import handscolor from '../assets/handscolor.jpg'
-import x from '../assets/1 1.svg'
 import Slider from "./Slider";
-export default function Strategy(){
-    return(
-        <div className = 'strategy'>
-            <div className="section1">
-              <div className="lefty">
-                <div className="bigd">
-                    <h1 >Check out strategies and backtest on data of your choice</h1>
-                </div>
-                <div className="smalld">
-                    <p>Get live profit and loss statistics on market data by the deployed and published strategies.</p>
-                </div>
-                <div className="buttond">
-                    <div className="bt-sign">Sign Up</div>
-                    <div className="bt-learn">Learn to use</div>
-                </div>
-              </div>
-              <div className="righty">
-                <div className="strategy-img">
-                    <img src={x} alt = "hands" />
-                </div>
-              </div>
-            </div>
-            <div className="section2">
-                <Slider />
-            </div>
-
+import Icon from "../Assets/Icon";
+const Strategy = () => {
+  return (
+    <div className="w-full bg-white h-full pt-32">
+      <div className="w-full flex flex-row justify-between">
+        <div className="flex flex-col gap-6 ml-20 mt-20">
+          <div className="text-6xl font-semibold">
+            Check out <br /> strategies and <br />
+            backtest on data of <br /> your choice
+          </div>
+          <div className="text-lg font-semibold">
+            Get live profit and loss statistics on market data <br />
+            by the deployed and published strategies.
+          </div>
+          <div className="flex flex-row gap-4">
+          <button className='bg-blue-balysisblue rounded-lg py-2 px-6 text-white text-base font-semibold flex-auto items-center'>Sign Up</button>
+          <button className="font-semibold py-2 px-4 border-black border  rounded-lg flex-auto">Learn to use</button>
+          </div>
         </div>
-    )
-}
+        <img src={Icon.moneyTree} />
+      </div>
+
+      <div className="strategy-slider h-screen -mt-16 relative w-full">
+        <Slider/>
+      </div>
+    </div>
+  );
+};
+
+export default Strategy;

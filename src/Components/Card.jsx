@@ -1,44 +1,18 @@
 import React from "react";
-import { memo } from "react";
-import img from "../assets/ayushphotu.jpg";
-import fivestar from "../assets/fivestar.svg";
-const Card = function ({ minor, name, major, source }) {
-  // const stringg = source
+import fivestar from "../Assets/fivestar.svg";
+import Icon from "../Assets/Icon";
+import { upperCase } from "lodash";
+const Card = ({ minor, name, major}) => {
   return (
-    <div
-      className="card"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        borderRadius: "8px",
-      }}
-    >
-      <div
-        className="card-img"
-        style={{ display: "flex", justifyContent: "center", marginTop: "10%" }}
-      >
-        <img
-          src={img}
-          alt="card-img"
-          style={{ borderRadius: "50%", width: "6rem", height: "6rem" }}
-        ></img>
+    <div className="h-4/5 w-6/7 flex flex-col items-center card m-6 gap-6 py-6 px-12">
+      <div className="rounded-full h-20 w-20"><img src={Icon.ayushPhoto} className=" h-20 w-20 rounded-full"/></div>
+      <div className="font-montserrat font-bold text-xl">{upperCase(major)}</div>
+      <div className="font-montserrat font-normal leading-8">{minor}</div>
+      <div className="">
+        <img src={fivestar} alt="stars"/>
       </div>
-      <div className="card-major">
-        <h1>
-          <b>{major}</b>
-        </h1>
-      </div>
-      <div className="card-minor">
-        <p style={{ textAlign: "center" }}>{minor}</p>
-      </div>
-      <div className="five-star">
-        <img src={fivestar} alt="stars" />
-      </div>
-      <div className="card-name">
-        <p>{name}</p>
-      </div>
+      <div className="text-gray-lightGray mb-6">{name}</div>
     </div>
   );
 };
-export default memo(Card);
+export default Card;
