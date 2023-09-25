@@ -1,6 +1,6 @@
 'use client'
 
-import LeftPane from '@/components/LeftPane'
+import LeftPane2 from '@/components/LeftPane2'
 import useDragDivider from '@/hooks/useDragDivider'
 import RightPane from '@/components/RightPane'
 import SubmissionContext from '@/context/SubmissionContext'
@@ -17,7 +17,7 @@ export default function Home() {
       <div className='h-[92vh] flex w-[100vw]'>
         <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
         <div id="leftplane" className={"w-1/2 flex-grow-0 flex-shrink-0"}>
-          <LeftPane />
+          <LeftPane2 />
         </div>
         <div className='w-3 bg-[#04192F] flex flex-col justify-center hover:cursor-ew-resize' onMouseDown={onMouseDown}>
           <DividerIconSVG />
