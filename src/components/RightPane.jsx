@@ -5,12 +5,12 @@ import UpPane from './UpPane'
 import DownPane from './DownPane'
 
 const RightPane = () => {
-  // const onMouseDown = useDragDivider("rightplane")
+  const onMouseDown = useDragDivider("rightplane")
 
   return (
     <div className='h-[92vh] flex flex-col'>
       <MessageDisplay />
-      {/* <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
+      <div className='w-3 border-r-[#41AFFF] border-solid border-r-[1px]' />
 
       <div id="rightplane" className={"h-1/2 flex-grow-0 flex-shrink-0"}>
         <UpPane />
@@ -27,7 +27,7 @@ const RightPane = () => {
       <div className='flex-[100%] flex-shrink-1 overflow-y-scroll' >
         <DownPane />
       </div>
-      <div className='w-3 border-l-[#41AFFF] border-solid border-l-[1px]' /> */}
+      <div className='w-3 border-l-[#41AFFF] border-solid border-l-[1px]' /> 
     </div>
 
 

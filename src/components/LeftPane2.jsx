@@ -77,6 +77,7 @@ const LeftPane2 = () => {
             <div className='flex flex-row justify-start pt-4'>
                 <div className='flex-[65%] pt-2'>
                     <Tab.Group selectedIndex={activeTab} onChange={(i,value)=>handleTabChange(i,value)}>
+                        <div className='flex flex-row items-end justify-end'>
                         <Tab.List style={{ display: 'flex', alignItems: 'center' }}>
                             {
                                 codeTab.map((i) => (
@@ -93,6 +94,15 @@ const LeftPane2 = () => {
                                 </svg>
                             </Tab>
                         </Tab.List>
+                        <div className='flex flex-1 border-solid border-blue-600 border-x-2 border-y-2 rounded-md justify-between my-1'>
+                    <p className='pl-2 text-[#41AEFD] font-bold'>Backtest</p>
+                    <div className='mt-2 pr-2'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                            <path d="M5.56859 5.42551C5.25552 5.74183 4.74448 5.74183 4.43141 5.42551L1.15263 2.11276C0.652663 1.60761 1.01049 0.75 1.72123 0.75L8.27877 0.75C8.98951 0.75 9.34734 1.60761 8.84737 2.11276L5.56859 5.42551Z" fill="#41AEFD" />
+                        </svg>
+                    </div>
+                </div>
+                        </div>
                         <Tab.Panels >
                             {
                                 codeEditor.map((codeTab,i) => (
@@ -117,6 +127,11 @@ const LeftPane2 = () => {
                             }
                         </Tab.Panels>
                     </Tab.Group>
+                    <div className='flex flex-row-reverse mt-2'>
+                        <button className='mx-2 bg-[#41AFFF] px-4 rounded-md text-white font-semibold'>Save</button>
+                        <button className='mx-2 bg-[#41AFFF] px-4 rounded-md text-white font-semibold'>Save & Execute</button>
+                        <button className='mx-2 bg-[#41AFFF] px-4 rounded-md text-white font-semibold' onClick={async () => await submitCode()}>Execute</button>
+                    </div>
                 </div>
                
             </div>
