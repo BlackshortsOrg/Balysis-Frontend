@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@canvasjs/react-charts": "^1.0.0",
+    "@canvasjs/react-stockcharts": "^1.0.0",
+    "@canvasjs/stockcharts": "^1.7.21",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",

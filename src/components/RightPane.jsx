@@ -17,7 +17,12 @@ const RightPane = () => {
             <HorizontalDividerIconSVG />
           </div>
         </PanelResizeHandle>
-        <Panel minSize={0} style={{ overflow: "scroll", height: "600px" }}>
+        <Panel
+          defaultSize={30}
+          minSize={30}
+          maxSize={85}
+          style={{ overflow: "scroll", height: "600px" }}
+        >
           <DownPane />
         </Panel>
       </PanelGroup>

@@ -92,7 +92,7 @@ const LeftPane = () => {
             <Tab.List style={{ display: "flex", alignItems: "center" }}>
               {codeTab.map((i) => (
                 <div key={i}>
-                  <CodeTab tabtitle="Esharky" />
+                  <CodeTab />
                 </div>
               ))}
               <Tab
