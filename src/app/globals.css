@@ -27,5 +27,9 @@ body {
 } */
 
 .balysis-linear-bg {
-  background: linear-gradient(269deg, #024082 0%, #032A53 46.20%, #071C31 100%);
+  background: linear-gradient(269deg, #024082 0%, #032a53 46.2%, #071c31 100%);
+}
+
+::-webkit-scrollbar {
+  height: 0;
 }
