@@ -1,7 +1,8 @@
 import React from "react";
-import Graph from "./Graph";
+import dynamic from "next/dynamic";
 import useDragDivider from "@/hooks/useDragDivider";
 import { DropDownArrow } from "./svgs/DropDownArrow";
+const Graph = dynamic(() => import("./Graph"), { ssr: false });
 const UpPane = () => {
   return (
     <div className="flex flex-col">

@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import UpPane from "./UpPane";
 import DownPane from "./DownPane";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import HorizontalDividerIconSVG from "./svgs/HorizontalDividerIcon";
+import ChartContext from "@/context/CharContext";
 
 const RightPane = () => {
   return (
