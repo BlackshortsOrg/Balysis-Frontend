@@ -1,26 +1,53 @@
 import React from "react";
-import { useContext, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { Tab } from "@headlessui/react";
 import SubmissionContext from "@/context/SubmissionContext";
 const CodeTab = () => {
   const [visibility, setVisibility] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [tabTitle, setTabTitle] = useState("Esharky");
+  const inputRef = useRef(null);
+
   const deleteTab = () => {
     setVisibility((e) => !e);
   };
+  const handleDoubleClick = () => {
+    setIsEditing(true);
+  };
+  const handleChange = (event) => {
+    setTabTitle(event.target.value);
+  };
+  const handleBlur = () => {
+    setIsEditing(false);
+    // Save the changes or perform any required actions here
+  };
+  useEffect(() => {
+    if (isEditing) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
   return (
     <div>
       {visibility && (
         <Tab className="justify-between bg-[#1E5684] rounded-t-lg mr-1 px-4 py-1 ui-not-selected:bg-opacity-50 focus:outline-none">
           <div className="flex justify-between">
-            <div className="inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white">
-              <input
-                type="text"
-                defaultValue={"Esharky"}
-                value={tabTitle}
-                style={{}}
-              />
+            <div
+              onDoubleClick={handleDoubleClick}
+              className="inline-block px-2 text-white text-sm font-normal drop-shadow-2xl shadow-white"
+            >
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={tabTitle}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  ref={inputRef}
+                  className="bg-[#1E5684] ui-not-selected:bg-opacity-50 focus:outline-none"
+                />
+              ) : (
+                <span>{tabTitle}</span>
+              )}
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
