@@ -23,12 +23,26 @@ const rows = [
 
 export default function BasicTable() {
   return (
-    <TableContainer className='border-white overflow-y-scroll h-full'>
-      <Table aria-label="simple table">
+    <TableContainer className='overflow-y-scroll flex flex-row items-center justify-center h-full'>
+      <Table aria-label="simple table flex flex-row items-center justify-center">
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.number} >
               <TableCell component="th" scope="row">
+                <h1 className='text-white'>{row.number}</h1>
+              </TableCell>
+              <TableCell align="right"><h1 className='text-white'>{row.item}</h1></TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    
+      <Table aria-label="simple table flex flex-row items-center justify-center">
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.number} >
+              <TableCell component="th" scope="row" className='border-l-2 border-white pl-6'>
                 <h1 className='text-white'>{row.number}</h1>
               </TableCell>
               <TableCell align="right"><h1 className='text-white'>{row.item}</h1></TableCell>

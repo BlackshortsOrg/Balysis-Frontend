@@ -1,105 +1,60 @@
 /* App.js */
-import React, { Component, useContext, useEffect, useState } from "react";
-import CanvasJSReact from "@canvasjs/react-stockcharts";
-import ChartContext from "@/context/CharContext";
-
+import React, { Component } from 'react';
+import CanvasJSReact from '@canvasjs/react-charts';
+//var CanvasJSReact = require('@canvasjs/react-charts');
+ 
 var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
-
-const App = () => {
-  const { dragging, setDragging } = useContext(ChartContext);
-  const [dataState, setDataState] = useState({
-    dataPoints: [],
-    isLoaded: false,
-  });
-  useEffect(() => {
-    if (!dataState.isLoaded) {
-      fetch("https://canvasjs.com/data/gallery/react/btcusd2017-18.json")
-        .then((res) => res.json())
-        .then((data) => {
-          var dps = [];
-          for (var i = 0; i < data.length; i++) {
-            dps.push({
-              x: new Date(data[i].date),
-              y: Number(data[i].close),
-            });
-          }
-          setDataState({
-            isLoaded: true,
-            dataPoints: dps,
-          });
-        });
-    }
-  }, [dataState]);
-  useEffect(() => {}, [dragging]);
-  const options = {
-    theme: "light1",
-    subtitles: [
-      {
-        text: "Cumulative P&L/Time",
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+ 
+class App extends Component {
+	constructor() {
+		super();
+		this.generateDataPoints = this.generateDataPoints.bind(this);
+	}
+	
+	generateDataPoints(noOfDps) {
+		var xVal = 1, yVal = 100;
+		var dps = [];
+		for(var i = 0; i < noOfDps; i++) {
+			yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+			dps.push({x: xVal,y: yVal});	
+			xVal++;
+		}
+		return dps;
+	}
+	
+	render() {
+		const options = {
+			theme: "light2", // "light1", "dark1", "dark2"
+			animationEnabled: true,
+			zoomEnabled: true,
+			title: {
+				text: "Cummulative P&L/Time"
+			},
+      axisX: {
+        title:"Time"
       },
-    ],
-    charts: [
-      {
-        axisX: {
-          crosshair: {
-            enabled: true,
-            snapToDataPoint: true,
-            valueFormatString: "MMM DD YYYY",
-          },
-        },
-        axisY: {
-          title: "Cumulative P&L",
-          prefix: "$",
-          crosshair: {
-            enabled: true,
-            snapToDataPoint: true,
-            valueFormatString: "$#,###.##",
-          },
-        },
-        toolTip: {
-          shared: true,
-        },
-        data: [
-          {
-            name: "Price (in USD)",
-            type: "splineArea",
-            color: "#3576a8",
-            yValueFormatString: "$#,###.##",
-            xValueFormatString: "MMM DD YYYY",
-            dataPoints: dataState.dataPoints,
-          },
-        ],
+      axisY: {
+        title:"Cumulative P&L"
       },
-    ],
-    navigator: {
-      slider: {
-        minimum: new Date("2017-05-01"),
-        maximum: new Date("2018-05-01"),
+      tooltip:{
+        shared:true
       },
-    },
-  };
-  const containerProps = {
-    width: "auto",
-    height: "53vh",
-    margin: "auto",
-  };
-  return (
-    <div>
-      <div>
-        {
-          // Reference: https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-          dataState.isLoaded && (
-            <CanvasJSStockChart
-              containerProps={containerProps}
-              options={options}
-              /* onRef = {ref => this.chart = ref} */
-            />
-          )
-        }
-      </div>
-    </div>
-  );
-};
-
-export default App;
+			data: [{
+				type: "area",
+				dataPoints: this.generateDataPoints(500)
+			}]
+		}
+		
+		return (
+		<div>
+			<CanvasJSChart options = {options} 
+				/* onRef={ref => this.chart = ref} */
+			/>
+			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+		</div>
+		);
+	}
+}
+ 
+module.exports = App;                              
