@@ -11,7 +11,6 @@ export default function Navbar() {
                 <a className='p-4 font-bold text-white text-base'>Learn</a>
                 <a className='p-4 font-bold text-white text-base'>Pricing</a>
                 <a className='p-4 font-bold text-white text-base'>How to use</a>
-
             </div>
             <div>
                 <a className='p-4 font-bold text-white text-base'>Username</a>
