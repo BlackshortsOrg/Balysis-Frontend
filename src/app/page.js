@@ -1,7 +1,13 @@
+import HeroSection from "@/components/HeroSection";
+import ShowCase from "@/components/ShowCase";
+import Features from "@/components/Features";
+
 export default function Home() {
   return (
-    <main className="h-[90vh]">
-      <h1>Blackshorts</h1>
+    <main>
+      <HeroSection />
+      <ShowCase />
+      <Features />
     </main>
-  )
+  );
 }
