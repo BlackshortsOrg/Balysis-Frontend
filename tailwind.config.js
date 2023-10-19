@@ -1,35 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-import Icon from './src/Assets/Icon';
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      //New Styling starts here!
-      colors:{
-        //New Color scheme starts here!
-        blue:{
-          primary: '#1890FF',
-          balysisblue:'#41afff',
-        },
-        green:{
-
-        },
-        gray:{
-          buttonSlider: '#FFFFFF80',
-          lightGray: '#696969'
-        }
-        //...etc add any new color in the same format
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-
-    fontFamily: {
-      //New font starts here!
-      montserrat: ['Montserrat','Arial', 'sans-serif']
-    }
-    }
+    },
   },
   plugins: [],
 }
-
