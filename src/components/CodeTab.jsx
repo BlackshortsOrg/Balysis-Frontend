@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { Tab } from "@headlessui/react";
 import SubmissionContext from "@/context/SubmissionContext";
-const CodeTab = () => {
+const CodeTab = ({ defaultName }) => {
   const [visibility, setVisibility] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [tabTitle, setTabTitle] = useState("Esharky");
+  const [tabTitle, setTabTitle] = useState(`Esharky ${defaultName}`);
   const inputRef = useRef(null);
 
   const deleteTab = () => {
