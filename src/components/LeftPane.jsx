@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useContext, useRef, useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { Tab } from "@headlessui/react";
@@ -9,8 +10,6 @@ import { AddIcon } from "./svgs/AddIcon";
 const LeftPane = () => {
   const { setSubmissionId, setSubmissionStatus } =
     useContext(SubmissionContext);
-  const [codeTab, setCodeTab] = useState({ id: "Tab 1" });
-  const [tabCount, setTabCount] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const editorRef = useRef(null);
   const submitCode = async () => {
@@ -49,24 +48,21 @@ const LeftPane = () => {
     monaco.editor.setTheme("blackshortsTheme");
   };
   const addTab = () => {
-    const dummyTab = { ...codeTab };
-    dummyTab[tabCount + 1] = `Tab ${tabCount + 1}`;
-    setTabCount(tabCount + 1);
-    setCodeTab(dummyTab);
-    // setCodeEditor([...codeEditor, { id: activeTab + 1, code: "import b" }]);
     const dummyEditor = { ...codeEditor };
-    dummyEditor[tabCount + 1] = "import balysis new tab";
+    const lastTab = parseInt(Object.keys(codeEditor).sort().slice(-1)[0]) + 1;
+    dummyEditor[lastTab] = { code: "import balysis", tab: "New Tab" };
+    console.log(dummyEditor);
     setCodeEditor(dummyEditor);
-    setActiveTab(tabCount + 1);
+    setActiveTab(lastTab);
   };
   const handleTabChange = (i, value) => {
     setActiveTab(i);
-    codeEditor[activeTab] = editorRef.current.getValue();
+    // codeEditor[activeTab] = editorRef.current.getValue();
     console.log(activeTab);
   };
   const handleEditorChange = (value) => {
     const dummy = { ...codeEditor };
-    dummy[activeTab] = value;
+    dummy[activeTab]["code"] = value;
     setCodeEditor(dummy);
   };
   const getEditorItems = () => {
@@ -78,19 +74,30 @@ const LeftPane = () => {
       }
     }
   };
-  const [codeEditor, setCodeEditor] = useState(getEditorItems() || { 0: "" });
-  useEffect(() => {
-    localStorage.setItem("codeEditor", JSON.stringify(codeEditor));
-  }, [codeEditor]);
+  const tabNameChange = (i, value) => {
+    const dummy = { ...codeEditor };
+    dummy[i]["tab"] = value;
+    setCodeEditor(dummy);
+  };
+  const [codeEditor, setCodeEditor] = useState({
+    0: { code: "import balysis", tab: "Strategy 1" },
+  });
   useEffect(() => {
     // When you retrieve the value from localStorage, update the Editor's value
     const storedValue = localStorage.getItem("codeEditor");
     if (storedValue) {
       console.log("use effect called");
       console.log(storedValue);
-      setCodeEditor(JSON.parse(storedValue));
+      const editor_state = JSON.parse(storedValue);
+      const tab_ids = Object.keys(editor_state).sort();
+      const active_tab_id = tab_ids[0];
+      setCodeEditor(editor_state);
+      setActiveTab(active_tab_id);
     }
   }, []);
+  useEffect(() => {
+    localStorage.setItem("codeEditor", JSON.stringify(codeEditor));
+  }, [codeEditor]);
   return (
     <div className="ml-2 mr-4 h-[90vh]">
       <div className="flex flex-row justify-start pt-4">
@@ -100,11 +107,18 @@ const LeftPane = () => {
             onChange={(i, value) => handleTabChange(i, value)}
           >
             <Tab.List style={{ display: "flex", alignItems: "center" }}>
-              {Object.keys(codeTab).map((i) => (
-                <div key={i}>
-                  <CodeTab defaultName={codeTab[i]} />
-                </div>
-              ))}
+              {Object.keys(codeEditor)
+                .sort()
+                .map((i) => (
+                  <div key={i}>
+                    <CodeTab
+                      tabTitle={codeEditor[i].tab}
+                      setTabTitle={(title) => {
+                        tabNameChange(i, title);
+                      }}
+                    />
+                  </div>
+                ))}
               <Tab
                 className="ml-1 ui-selected:focus:outline-none"
                 onClick={addTab}
@@ -125,7 +139,7 @@ const LeftPane = () => {
         height="75vh"
         defaultLanguage="python"
         defaultValue="import balysis"
-        value={codeEditor[0]}
+        value={codeEditor[activeTab].code}
         onMount={EditorOnMount}
         theme="blackshortsTheme"
         onChange={handleEditorChange}
