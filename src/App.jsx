@@ -1,5 +1,5 @@
 import './App.css'
-import Footer from './Components/Footer';
+import BalysisFooter from './Components/Footer';
 import Navbar from './Components/Navbar';
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home';
@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/marketplace' element={<Marketplace />} />
       </Routes>
-      <Footer />
+      <BalysisFooter/>
     </div>
   )
 }
